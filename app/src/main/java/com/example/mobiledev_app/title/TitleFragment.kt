@@ -22,9 +22,11 @@ class TitleFragment : Fragment() {
             R.layout.fragment_title, container, false
         )
 
-        binding.button.setOnClickListener{view: View ->
+        binding.titlePlayButton.setOnClickListener{view: View ->
             view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
         }
+
+
         return binding.root
     }
 }

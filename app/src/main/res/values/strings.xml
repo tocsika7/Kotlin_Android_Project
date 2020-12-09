@@ -8,5 +8,6 @@
     <string name="game_rock_button">Rock</string>
     <string name="game_paper_button">paper</string>
     <string name="game_scissors_button">Scissors</string>
-    <string name="game_score_text">Score</string>
+    <string name="game_ai_choice_text">The Choice of the Computer:</string>
+    <string name="score_format">Current score: %d</string>
 </resources>
