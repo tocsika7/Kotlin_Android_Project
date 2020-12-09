@@ -63,7 +63,7 @@
         android:background="#009688"
         android:fontFamily="@font/roboto"
         android:padding="10dp"
-        android:text="@string/game_ai_choice_text"
+        android:text="@{@string/com_choice_format(gameViewModel.computerChoice)}"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

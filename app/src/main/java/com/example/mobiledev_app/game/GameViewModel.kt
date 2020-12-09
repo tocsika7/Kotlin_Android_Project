@@ -8,6 +8,11 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel: ViewModel() {
 
+
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
+
     // Current Score
     private val _score = MutableLiveData<Int>()
     val score: LiveData<Int>
@@ -24,6 +29,8 @@ class GameViewModel: ViewModel() {
     init {
         _score.value = 0
         _playerChoice.value = ""
+        _computerChoice.value = ""
+        _eventGameFinish.value = false
     }
 
     fun onRockClicked(){
@@ -67,7 +74,7 @@ class GameViewModel: ViewModel() {
     private fun checkWinRock(computerChoice: String) {
         when(computerChoice) {
             "rock" -> Log.i("GameViewModel", "Draw")
-            "paper" -> Log.i("GameViewModel", "Loss")
+            "paper" -> onGameFinish()
             "scissors" -> onWin()
         }
     }
@@ -76,13 +83,13 @@ class GameViewModel: ViewModel() {
         when(computerChoice) {
             "rock" -> onWin()
             "paper" -> Log.i("GameViewModel", "Draw")
-            "scissors" -> Log.i("GameViewModel", "Loss")
+            "scissors" -> onGameFinish()
         }
     }
 
     private fun checkWinScissors(computerChoice: String) {
         when(computerChoice) {
-            "rock" -> Log.i("GameViewModel", "Loss")
+            "rock" -> onGameFinish()
             "paper" -> onWin()
             "scissors" -> Log.i("GameViewModel", "Draw")
         }
@@ -91,6 +98,11 @@ class GameViewModel: ViewModel() {
     fun onWin() {
         _score.value = (_score.value)?.plus(1)
     }
+
+    fun onGameFinish() {
+        _eventGameFinish.value = true
+    }
+
 
 
 

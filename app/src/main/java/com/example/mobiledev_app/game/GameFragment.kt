@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.databinding.FragmentGameBinding
 
@@ -34,12 +35,18 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.gameViewModel = viewModel
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if(hasFinished) gameFinished()
+        })
 
         return binding.root
     }
 
     private fun gameFinished(){
-        Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
+        val action = GameFragmentDirections.actionGameToScore(
+            score = viewModel.score.value?:0
+        )
+        NavHostFragment.findNavController(this).navigate(action)
     }
 
 
