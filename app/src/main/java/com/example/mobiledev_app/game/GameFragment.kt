@@ -35,8 +35,8 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.gameViewModel = viewModel
-        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
-            if(hasFinished) gameFinished()
+        viewModel.lives.observe(viewLifecycleOwner, Observer { lives ->
+            if(lives == 0) gameFinished()
         })
 
         return binding.root

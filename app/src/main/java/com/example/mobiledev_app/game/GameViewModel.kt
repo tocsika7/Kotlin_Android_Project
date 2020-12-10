@@ -26,11 +26,16 @@ class GameViewModel: ViewModel() {
     val computerChoice: LiveData<String>
         get() = _computerChoice
 
+    private val _lives = MutableLiveData<Int>()
+    val lives: LiveData<Int>
+        get() = _lives
+
     init {
         _score.value = 0
         _playerChoice.value = ""
         _computerChoice.value = ""
         _eventGameFinish.value = false
+        _lives.value = 3
     }
 
     fun onRockClicked(){
@@ -74,7 +79,7 @@ class GameViewModel: ViewModel() {
     private fun checkWinRock(computerChoice: String) {
         when(computerChoice) {
             "rock" -> Log.i("GameViewModel", "Draw")
-            "paper" -> onGameFinish()
+            "paper" -> onLoss()
             "scissors" -> onWin()
         }
     }
@@ -83,13 +88,13 @@ class GameViewModel: ViewModel() {
         when(computerChoice) {
             "rock" -> onWin()
             "paper" -> Log.i("GameViewModel", "Draw")
-            "scissors" -> onGameFinish()
+            "scissors" -> onLoss()
         }
     }
 
     private fun checkWinScissors(computerChoice: String) {
         when(computerChoice) {
-            "rock" -> onGameFinish()
+            "rock" -> onLoss()
             "paper" -> onWin()
             "scissors" -> Log.i("GameViewModel", "Draw")
         }
@@ -101,6 +106,10 @@ class GameViewModel: ViewModel() {
 
     fun onGameFinish() {
         _eventGameFinish.value = true
+    }
+
+    private fun onLoss(){
+        _lives.value = (_lives.value)?.minus(1)
     }
 
 

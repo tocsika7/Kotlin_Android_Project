@@ -10,5 +10,6 @@
     <string name="game_scissors_button">Scissors</string>
     <string name="game_ai_choice_text">The Choice of the Computer:</string>
     <string name="score_format">Current score: %d</string>
+    <string name="lives_format">Lives: %d</string>
     <string name="com_choice_format">The Computer Choose: %s</string>
 </resources>
