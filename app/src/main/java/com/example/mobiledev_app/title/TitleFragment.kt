@@ -10,8 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.databinding.FragmentTitleBinding
+import com.example.mobiledev_app.game.GameFragmentDirections
 import com.example.mobiledev_app.game.GameViewModel
 
 
@@ -32,9 +34,24 @@ class TitleFragment : Fragment() {
         )
         viewModel = ViewModelProvider(this).get(TitleViewModel::class.java)
         binding.titleViewModel = viewModel
-       
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.eventGameStart.observe(viewLifecycleOwner, Observer { start ->
+            if(start) onPlayStart()
+        })
+
 
         return binding.root
+
+
+
+    }
+
+    fun onPlayStart() {
+        val action = TitleFragmentDirections.actionTitleFragmentToGameFragment(
+            username = viewModel.userName.value.toString()
+        )
+        NavHostFragment.findNavController(this).navigate(action)
     }
 }
 

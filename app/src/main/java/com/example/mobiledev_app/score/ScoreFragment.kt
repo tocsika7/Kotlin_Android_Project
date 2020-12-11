@@ -28,10 +28,15 @@ class ScoreFragment : Fragment() {
            false
        )
 
-        viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score)
+        viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score,
+            ScoreFragmentArgs.fromBundle(requireArguments()).username)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+
+
+
 
         return binding.root
     }

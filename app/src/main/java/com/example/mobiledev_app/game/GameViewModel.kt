@@ -6,12 +6,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GameViewModel(private val username: String): ViewModel() {
+class GameViewModel(username: String): ViewModel() {
 
 
     private val _eventGameFinish = MutableLiveData<Boolean>()
     val eventGameFinish: LiveData<Boolean>
         get() = _eventGameFinish
+
+    private val username:String = username;
+
+    fun getUsername(): String {
+        return this.username
+    }
+
 
     // Current Score
     private val _score = MutableLiveData<Int>()

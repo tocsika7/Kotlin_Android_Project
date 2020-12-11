@@ -9,8 +9,17 @@ class TitleViewModel: ViewModel() {
     val userName = MutableLiveData<String>()
 
 
+    private val _eventGameStart = MutableLiveData<Boolean>()
+    val eventGameStart: LiveData<Boolean>
+        get() = _eventGameStart
+
     init {
         userName.value = "Username"
+        _eventGameStart.value = false
+    }
+
+    fun onPlayButtonClicked(){
+        _eventGameStart.value = true
     }
 
 }

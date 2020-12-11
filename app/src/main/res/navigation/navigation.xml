@@ -22,6 +22,10 @@
         <action
             android:id="@+id/action_game_to_score"
             app:destination="@id/scoreFragment" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="user" />
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
@@ -32,5 +36,9 @@
             android:name="score"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="user" />
     </fragment>
 </navigation>

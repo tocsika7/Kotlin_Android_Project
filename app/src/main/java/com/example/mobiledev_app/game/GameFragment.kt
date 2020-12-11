@@ -1,6 +1,7 @@
 package com.example.mobiledev_app.game
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +13,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.databinding.FragmentGameBinding
+import com.example.mobiledev_app.score.ScoreFragmentArgs
+import com.example.mobiledev_app.score.ScoreViewModel
+import com.example.mobiledev_app.score.ScoreViewModelFactory
 
 
 class GameFragment : Fragment() {
 
     private lateinit var binding : FragmentGameBinding
     private lateinit var viewModel: GameViewModel
+    private lateinit var viewModelFactory: GameViewModelFactory
 
 
     override fun onCreateView(
@@ -32,7 +37,9 @@ class GameFragment : Fragment() {
             false
         )
 
-        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        viewModelFactory = GameViewModelFactory(GameFragmentArgs.fromBundle(requireArguments()).username)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
+        Log.i("GameViewModel", viewModel.getUsername())
         binding.lifecycleOwner = viewLifecycleOwner
         binding.gameViewModel = viewModel
         viewModel.lives.observe(viewLifecycleOwner, Observer { lives ->
@@ -43,8 +50,12 @@ class GameFragment : Fragment() {
     }
 
     private fun gameFinished(){
+        //val action = GameFragmentDirections.actionGameToScore(
+          //  score = viewModel.score.value?:0
+       // )
         val action = GameFragmentDirections.actionGameToScore(
-            score = viewModel.score.value?:0
+            score = viewModel.score.value?:0,
+            username = viewModel.getUsername()
         )
         NavHostFragment.findNavController(this).navigate(action)
     }
