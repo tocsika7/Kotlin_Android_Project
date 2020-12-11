@@ -14,7 +14,7 @@ class TitleViewModel: ViewModel() {
         get() = _eventGameStart
 
     init {
-        userName.value = "Username"
+        userName.value = "Enter your username"
         _eventGameStart.value = false
     }
 

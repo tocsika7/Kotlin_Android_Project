@@ -39,20 +39,18 @@ class GameFragment : Fragment() {
 
         viewModelFactory = GameViewModelFactory(GameFragmentArgs.fromBundle(requireArguments()).username)
         viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
-        Log.i("GameViewModel", viewModel.getUsername())
         binding.lifecycleOwner = viewLifecycleOwner
         binding.gameViewModel = viewModel
         viewModel.lives.observe(viewLifecycleOwner, Observer { lives ->
             if(lives == 0) gameFinished()
         })
 
+
+
         return binding.root
     }
 
     private fun gameFinished(){
-        //val action = GameFragmentDirections.actionGameToScore(
-          //  score = viewModel.score.value?:0
-       // )
         val action = GameFragmentDirections.actionGameToScore(
             score = viewModel.score.value?:0,
             username = viewModel.getUsername()

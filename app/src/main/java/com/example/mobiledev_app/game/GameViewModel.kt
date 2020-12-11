@@ -1,12 +1,19 @@
 package com.example.mobiledev_app.game
 
+import android.os.CountDownTimer
+import android.text.format.DateUtils
 import android.util.Log
+import android.widget.Chronometer
 import kotlin.random.Random
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import java.util.*
 
 class GameViewModel(username: String): ViewModel() {
+
+
 
 
     private val _eventGameFinish = MutableLiveData<Boolean>()
@@ -38,11 +45,11 @@ class GameViewModel(username: String): ViewModel() {
         get() = _lives
 
     init {
+        _lives.value = 3
         _score.value = 0
         _playerChoice.value = ""
         _computerChoice.value = ""
         _eventGameFinish.value = false
-        _lives.value = 3
     }
 
     fun onRockClicked(){
@@ -118,7 +125,6 @@ class GameViewModel(username: String): ViewModel() {
     private fun onLoss(){
         _lives.value = (_lives.value)?.minus(1)
     }
-
 
 
 

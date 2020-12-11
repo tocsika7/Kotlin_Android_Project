@@ -37,9 +37,8 @@ class TitleFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.eventGameStart.observe(viewLifecycleOwner, Observer { start ->
-            if(start) onPlayStart()
-        })
-
+                if (start) onPlayStart()
+            })
 
         return binding.root
 
@@ -47,10 +46,12 @@ class TitleFragment : Fragment() {
 
     }
 
-    fun onPlayStart() {
+    private fun onPlayStart() {
+        Log.i("Title", "onPlayStart called")
         val action = TitleFragmentDirections.actionTitleFragmentToGameFragment(
-            username = viewModel.userName.value.toString()
+            username = viewModel.userName.value!!
         )
+        Log.i("Title", "username valued passed")
         NavHostFragment.findNavController(this).navigate(action)
     }
 }

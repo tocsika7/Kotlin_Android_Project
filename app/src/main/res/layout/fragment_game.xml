@@ -9,97 +9,145 @@
             type="com.example.mobiledev_app.game.GameViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/frameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".game.GameFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".game.GameFragment">
 
-    <Button
-        android:id="@+id/game_rock_button"
-        android:onClick="@{() -> gameViewModel.onRockClicked()}"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#009688"
-        android:text="@string/game_rock_button"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBaseline_toBaselineOf="@+id/game_paper_button"
-        app:layout_constraintEnd_toStartOf="@+id/game_paper_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/game_rock_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#009688"
+            android:fontFamily="@font/roboto"
+            android:onClick="@{() -> gameViewModel.onRockClicked()}"
+            android:text="@string/game_rock_button"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBaseline_toBaselineOf="@+id/game_paper_button"
+            app:layout_constraintEnd_toStartOf="@+id/game_paper_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/game_paper_button"
-        android:onClick="@{() -> gameViewModel.onPaperClicked()}"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#009688"
-        android:text="@string/game_paper_button"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/game_scissors_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/game_rock_button"
-        app:layout_constraintTop_toBottomOf="@+id/game_ai_choice" />
+        <Button
+            android:id="@+id/game_paper_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="105dp"
+            android:background="#009688"
+            android:fontFamily="@font/roboto"
+            android:onClick="@{() -> gameViewModel.onPaperClicked()}"
+            android:text="@string/game_paper_button"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/game_scissors_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/game_rock_button" />
 
-    <Button
-        android:id="@+id/game_scissors_button"
-        android:onClick="@{() -> gameViewModel.onScissorsClicked()}"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#009688"
-        android:text="@string/game_scissors_button"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBaseline_toBaselineOf="@+id/game_paper_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/game_paper_button" />
+        <Button
+            android:id="@+id/game_scissors_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#009688"
+            android:fontFamily="@font/roboto"
+            android:onClick="@{() -> gameViewModel.onScissorsClicked()}"
+            android:text="@string/game_scissors_button"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBaseline_toBaselineOf="@+id/game_paper_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/game_paper_button" />
 
-    <TextView
-        android:id="@+id/game_ai_choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#009688"
-        android:fontFamily="@font/roboto"
-        android:padding="10dp"
-        android:text="@{@string/com_choice_format(gameViewModel.computerChoice)}"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="172dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/game_score_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#009688"
-        android:padding="5dp"
-        android:text="@{@string/score_format(gameViewModel.score)}"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/game_ai_choice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.239"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/game_comp_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="#009688"
+            android:padding="5dp"
+            android:text="@string/game_ai_choice_text"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-    <TextView
-        android:id="@+id/game_lives_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="208dp"
-        android:background="#009688"
-        android:padding="5dp"
-        android:text="@{@string/lives_format(gameViewModel.lives)}"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/game_score_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/game_score_text" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/computer_choice_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="@{gameViewModel.computerChoice}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/game_paper_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_comp_choice"
+            app:layout_constraintVertical_bias="0.079" />
+
+        <TextView
+            android:id="@+id/game_score_text"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFEB3B"
+            android:fontFamily="@font/roboto"
+            android:padding="5dp"
+            android:text="@string/game_score"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="32dp"
+            android:background="#FFEB3B"
+            android:fontFamily="@font/roboto"
+            android:padding="5dp"
+            android:text="@string/game_lives_text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_score_text" />
+
+        <TextView
+            android:id="@+id/game_score_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="@{gameViewModel.score.toString()}"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/game_score_text"
+            app:layout_constraintStart_toEndOf="@+id/game_score_text" />
+
+        <TextView
+            android:id="@+id/game_lives_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="@{gameViewModel.lives.toString()}"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+            app:layout_constraintStart_toEndOf="@+id/textView6" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>
