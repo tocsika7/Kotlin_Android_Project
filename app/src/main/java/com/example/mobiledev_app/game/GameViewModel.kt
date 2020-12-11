@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GameViewModel: ViewModel() {
+class GameViewModel(private val username: String): ViewModel() {
 
 
     private val _eventGameFinish = MutableLiveData<Boolean>()
