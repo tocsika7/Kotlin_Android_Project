@@ -11,5 +11,9 @@
     <string name="game_ai_choice_text">The Choice of the Computer:</string>
     <string name="title_enter_name">Please enter your Name</string>
     <string name="game_score">Score</string>
+    <string name="score_format">Your score is %s.</string>
+    <string name="name_format">Congratulations %s!</string>
     <string name="game_lives_text">Lives</string>
+    <string name="game_over_text">Game Over!</string>
+    <string name="play_again_button_text">Play Again</string>
 </resources>

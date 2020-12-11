@@ -40,5 +40,8 @@
             android:name="username"
             app:argType="string"
             android:defaultValue="user" />
+        <action
+            android:id="@+id/action_scoreFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
 </navigation>
