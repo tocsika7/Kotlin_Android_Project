@@ -14,9 +14,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.database.ResultDatabase
 import com.example.mobiledev_app.databinding.FragmentGameBinding
-import com.example.mobiledev_app.score.ScoreFragmentArgs
-import com.example.mobiledev_app.score.ScoreViewModel
-import com.example.mobiledev_app.score.ScoreViewModelFactory
+
 
 
 class GameFragment : Fragment() {
@@ -58,10 +56,7 @@ class GameFragment : Fragment() {
 
     private fun gameFinished(){
         viewModel.onGameFinish()
-        val action = GameFragmentDirections.actionGameToScore(
-            score = viewModel.score.value?:0,
-            username = viewModel.getUsername()
-        )
+        val action = GameFragmentDirections.actionGameToScore()
         NavHostFragment.findNavController(this).navigate(action)
     }
 

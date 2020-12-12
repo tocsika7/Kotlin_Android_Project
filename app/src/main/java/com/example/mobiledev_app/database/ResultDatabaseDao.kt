@@ -17,6 +17,6 @@ interface ResultDatabaseDao {
     @Query("SELECT * FROM game_result_table ORDER BY score DESC")
     fun getAllResults(): LiveData<List<Result>>
 
-    @Query("SELECT * FROM game_result_table ORDER BY userId LIMIT -1")
+    @Query("SELECT * FROM game_result_table ORDER BY userId DESC LIMIT -1")
     suspend fun getLatestResult(): Result?
 }

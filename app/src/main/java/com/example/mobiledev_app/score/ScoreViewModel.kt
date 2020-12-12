@@ -1,10 +1,15 @@
 package com.example.mobiledev_app.score
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.mobiledev_app.database.Result
+import com.example.mobiledev_app.database.ResultDatabaseDao
+import kotlinx.coroutines.launch
 
-class ScoreViewModel(finalScore: Int , username: String) : ViewModel() {
+class ScoreViewModel(
+    val database: ResultDatabaseDao,
+    application: Application)
+    : AndroidViewModel(application) {
 
     private val _score = MutableLiveData<Int>()
     val score: LiveData<Int>
@@ -23,14 +28,30 @@ class ScoreViewModel(finalScore: Int , username: String) : ViewModel() {
         get() = _onShowLeaderboard
 
     init {
-        _score.value = finalScore
-        _username.value = username
+        initScoreAndUserName()
         _onGameRestart.value = false
         _onShowLeaderboard.value = false
     }
 
     fun onPlayAgainClicked(){
         _onGameRestart.value = true
+    }
+
+    private fun initScoreAndUserName(){
+        viewModelScope.launch {
+            var result = getResult()
+            if (result != null) {
+                _score.value = result.score
+            }
+            if (result != null) {
+                _username.value = result.userName
+            }
+        }
+    }
+
+    private suspend fun getResult(): Result? {
+        var result = database.getLatestResult()
+        return result
     }
 
 

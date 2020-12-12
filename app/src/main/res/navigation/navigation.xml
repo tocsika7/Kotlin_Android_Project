@@ -32,14 +32,6 @@
         android:name="com.example.mobiledev_app.score.ScoreFragment"
         android:label="fragment_score"
         tools:layout="@layout/fragment_score" >
-        <argument
-            android:name="score"
-            app:argType="integer"
-            android:defaultValue="0" />
-        <argument
-            android:name="username"
-            app:argType="string"
-            android:defaultValue="user" />
         <action
             android:id="@+id/action_scoreFragment_to_titleFragment"
             app:destination="@id/titleFragment" />

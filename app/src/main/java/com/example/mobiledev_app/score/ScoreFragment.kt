@@ -33,8 +33,10 @@ class ScoreFragment : Fragment() {
        )
 
 
-        viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score,
-            ScoreFragmentArgs.fromBundle(requireArguments()).username)
+        val application = requireNotNull(this.activity).application
+        val dataSource = ResultDatabase.getInstance(application).resultDatabaseDao
+
+        viewModelFactory = ScoreViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
