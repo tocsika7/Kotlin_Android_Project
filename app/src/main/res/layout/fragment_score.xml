@@ -61,14 +61,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#009688"
+            android:onClick="@{()-> scoreViewModel.onPlayAgainClicked()}"
             android:padding="10dp"
             android:text="@string/play_again_button_text"
-            android:onClick="@{()-> scoreViewModel.onPlayAgainClicked()}"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/score_score" />
+
+        <Button
+            android:id="@+id/leaderboard_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="#009688"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:onClick="@{()-> scoreViewModel.onLeaderboardClicked()}"
+            android:text="@string/leaderboard_header"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/play_again_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </layout>

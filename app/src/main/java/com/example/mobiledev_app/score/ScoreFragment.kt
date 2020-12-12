@@ -35,11 +35,22 @@ class ScoreFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+
         viewModel.onGameRestart.observe(viewLifecycleOwner, Observer { restart ->
             if(restart) onGameRestart()
         })
 
+        viewModel.onShowLeaderboard.observe(viewLifecycleOwner, Observer { leaderboard ->
+            if(leaderboard) onShowLeaderboard()
+        })
+
         return binding.root
+    }
+
+    private fun onShowLeaderboard(){
+        val action = ScoreFragmentDirections.actionScoreFragmentToLeaderboardFragment()
+        NavHostFragment.findNavController(this).navigate(action)
     }
 
     private fun onGameRestart(){

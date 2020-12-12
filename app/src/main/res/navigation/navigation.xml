@@ -43,5 +43,12 @@
         <action
             android:id="@+id/action_scoreFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
+        <action
+            android:id="@+id/action_scoreFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.example.mobiledev_app.leaderboard.LeaderboardFragment"
+        android:label="LeaderboardFragment" />
 </navigation>
