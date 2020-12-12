@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.mobiledev_app.R
+import com.example.mobiledev_app.database.ResultDatabase
 import com.example.mobiledev_app.databinding.FragmentGameBinding
 import com.example.mobiledev_app.score.ScoreFragmentArgs
 import com.example.mobiledev_app.score.ScoreViewModel
@@ -37,7 +38,12 @@ class GameFragment : Fragment() {
             false
         )
 
-        viewModelFactory = GameViewModelFactory(GameFragmentArgs.fromBundle(requireArguments()).username)
+        val application = requireNotNull(this.activity).application
+        val dataSource = ResultDatabase.getInstance(application).resultDatabaseDao
+
+        viewModelFactory = GameViewModelFactory(dataSource,
+            application,
+            GameFragmentArgs.fromBundle(requireArguments()).username)
         viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.gameViewModel = viewModel
@@ -51,6 +57,7 @@ class GameFragment : Fragment() {
     }
 
     private fun gameFinished(){
+        viewModel.onGameFinish()
         val action = GameFragmentDirections.actionGameToScore(
             score = viewModel.score.value?:0,
             username = viewModel.getUsername()

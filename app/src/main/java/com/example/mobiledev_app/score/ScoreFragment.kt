@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.mobiledev_app.R
+import com.example.mobiledev_app.database.ResultDatabase
+import com.example.mobiledev_app.database.ResultDatabaseDao
 import com.example.mobiledev_app.databinding.FragmentScoreBinding
 
 
@@ -29,6 +31,7 @@ class ScoreFragment : Fragment() {
            container,
            false
        )
+
 
         viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score,
             ScoreFragmentArgs.fromBundle(requireArguments()).username)

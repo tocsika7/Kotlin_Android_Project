@@ -1,24 +1,17 @@
 package com.example.mobiledev_app.game
 
-import android.os.CountDownTimer
-import android.text.format.DateUtils
+import android.app.Application
+
 import android.util.Log
-import android.widget.Chronometer
-import kotlin.random.Random
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import java.util.*
+import androidx.lifecycle.*
+import com.example.mobiledev_app.database.ResultDatabaseDao
+import com.example.mobiledev_app.database.Result
+import kotlinx.coroutines.launch
 
-class GameViewModel(username: String): ViewModel() {
+class GameViewModel(val database: ResultDatabaseDao,
+                    application: Application,
+                    username: String): AndroidViewModel(application) {
 
-
-
-
-    private val _eventGameFinish = MutableLiveData<Boolean>()
-    val eventGameFinish: LiveData<Boolean>
-        get() = _eventGameFinish
 
     private val username:String = username;
 
@@ -49,7 +42,6 @@ class GameViewModel(username: String): ViewModel() {
         _score.value = 0
         _playerChoice.value = ""
         _computerChoice.value = ""
-        _eventGameFinish.value = false
     }
 
     fun onRockClicked(){
@@ -119,7 +111,15 @@ class GameViewModel(username: String): ViewModel() {
     }
 
     fun onGameFinish() {
-        _eventGameFinish.value = true
+        viewModelScope.launch {
+            val result = Result(score = _score.value!!, userName = getUsername() )
+            Log.i("GameViewModel", "Result added To Database: $result")
+            insert(result)
+        }
+    }
+
+    private suspend fun insert(result: Result) {
+        database.insert(result)
     }
 
     private fun onLoss(){

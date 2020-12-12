@@ -9,14 +9,14 @@ import androidx.room.Query
 interface ResultDatabaseDao {
 
     @Insert
-    fun insert(result: Result)
+    suspend fun insert(result: Result)
 
     @Query("DELETE FROM game_result_table")
-    fun clear()
+    suspend fun clear()
 
-    @Query("SELECT * FROM game_result_table ORDER BY score")
+    @Query("SELECT * FROM game_result_table ORDER BY score DESC")
     fun getAllResults(): LiveData<List<Result>>
 
     @Query("SELECT * FROM game_result_table ORDER BY userId LIMIT -1")
-    fun getLatestResult(): Result?
+    suspend fun getLatestResult(): Result?
 }
