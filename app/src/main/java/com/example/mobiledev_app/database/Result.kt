@@ -13,7 +13,7 @@ data class Result(
     val date: Long = System.currentTimeMillis(),
 
     @ColumnInfo(name = "user_name")
-    var userName: String,
+    var userName: String = "user",
 
     @ColumnInfo(name = "score")
     var score: Int = 0
