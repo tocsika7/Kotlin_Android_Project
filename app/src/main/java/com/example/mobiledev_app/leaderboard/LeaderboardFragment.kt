@@ -1,6 +1,7 @@
 package com.example.mobiledev_app.leaderboard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,10 +35,10 @@ class LeaderboardFragment : Fragment() {
         val dataSource = ResultDatabase.getInstance(application).resultDatabaseDao
 
         viewModelFactory = LeaderboardViewModelFactory(dataSource, application)
-
         viewModel = ViewModelProvider(this, viewModelFactory).get(LeaderboardViewModel::class.java)
         binding.leaderBoardViewModel = viewModel
-
+        binding.lifecycleOwner = viewLifecycleOwner
+        
         return binding.root
     }
 
