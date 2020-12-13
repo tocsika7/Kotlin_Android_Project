@@ -14,7 +14,7 @@ interface ResultDatabaseDao {
     @Query("DELETE FROM game_result_table")
     suspend fun clear()
 
-    @Query("SELECT * FROM game_result_table ORDER BY userId DESC")
+    @Query("SELECT * FROM game_result_table ORDER BY score DESC")
     fun getAllResults(): LiveData<List<Result>>
 
     @Query("SELECT * FROM game_result_table ORDER BY userId DESC LIMIT -1")

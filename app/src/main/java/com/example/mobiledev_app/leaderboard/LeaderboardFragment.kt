@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.database.ResultDatabase
@@ -38,6 +39,15 @@ class LeaderboardFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(LeaderboardViewModel::class.java)
         binding.leaderBoardViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        val adapter = ResultAdapter()
+        binding.resultList.adapter = adapter
+
+        viewModel.results.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
         
         return binding.root
     }

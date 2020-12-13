@@ -5,7 +5,9 @@ import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.widget.TextView
 import androidx.core.text.HtmlCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobiledev_app.database.Result
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
@@ -35,3 +37,7 @@ fun formatResults(results: List<Result>, resources: Resources): Spanned {
         return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
+
+class ResultItemViewHolder(var textView: TextView)
+    : RecyclerView.ViewHolder(textView)
+
