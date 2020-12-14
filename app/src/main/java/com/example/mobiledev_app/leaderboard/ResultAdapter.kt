@@ -1,7 +1,6 @@
 package com.example.mobiledev_app.leaderboard
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.convertLongToDateString
 import com.example.mobiledev_app.database.Result
+import com.example.mobiledev_app.databinding.ResultItemViewBinding
 
 class ResultAdapter: ListAdapter<Result, ResultAdapter.ViewHolder>(ResultDiffCallback()) {
 
@@ -34,10 +34,10 @@ class ResultAdapter: ListAdapter<Result, ResultAdapter.ViewHolder>(ResultDiffCal
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor (itemView: View): RecyclerView.ViewHolder(itemView){
-        val userName: TextView = itemView.findViewById(R.id.user_name)
-        val score: TextView = itemView.findViewById(R.id.score)
-        val date: TextView = itemView.findViewById(R.id.date)
+    class ViewHolder private constructor (val binding: ResultItemViewBinding): RecyclerView.ViewHolder(binding.root){
+        val userName: TextView = binding.userName
+        val score: TextView = binding.score
+        val date: TextView = binding.date
 
         fun bind(
             item: Result
@@ -51,9 +51,8 @@ class ResultAdapter: ListAdapter<Result, ResultAdapter.ViewHolder>(ResultDiffCal
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.result_item_view, parent, false)
-
-                return ViewHolder(view)
+                val binding = ResultItemViewBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
 
