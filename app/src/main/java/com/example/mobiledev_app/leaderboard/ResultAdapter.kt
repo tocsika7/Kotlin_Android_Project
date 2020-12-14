@@ -1,28 +1,31 @@
 package com.example.mobiledev_app.leaderboard
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobiledev_app.R
-import com.example.mobiledev_app.ResultItemViewHolder
 import com.example.mobiledev_app.convertLongToDateString
 import com.example.mobiledev_app.database.Result
 
-class ResultAdapter: RecyclerView.Adapter<ResultAdapter.ViewHolder>()  {
+class ResultAdapter: ListAdapter<Result, ResultAdapter.ViewHolder>(ResultDiffCallback()) {
 
-    var data = listOf<Result>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    class ResultDiffCallback : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.userId == newItem.userId
         }
 
-    override fun getItemCount() = data.size
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem == newItem
+        }
+
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
