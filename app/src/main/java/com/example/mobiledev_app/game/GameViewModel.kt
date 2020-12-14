@@ -13,11 +13,9 @@ class GameViewModel(val database: ResultDatabaseDao,
                     username: String): AndroidViewModel(application) {
 
 
-    private val username:String = username;
-
-    fun getUsername(): String {
-        return this.username
-    }
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String>
+        get() = _username
 
 
     // Current Score
@@ -42,6 +40,7 @@ class GameViewModel(val database: ResultDatabaseDao,
         _score.value = 0
         _playerChoice.value = ""
         _computerChoice.value = ""
+        _username.value = username
     }
 
     fun onRockClicked(){
@@ -112,7 +111,7 @@ class GameViewModel(val database: ResultDatabaseDao,
 
     fun onGameFinish() {
         viewModelScope.launch {
-            val result = Result(score = _score.value!!, userName = getUsername() )
+            val result = Result(score = _score.value!!, userName = username.value.toString() )
             Log.i("GameViewModel", "Result added To Database: $result")
             insert(result)
         }

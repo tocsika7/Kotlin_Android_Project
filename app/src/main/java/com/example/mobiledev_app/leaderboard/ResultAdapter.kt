@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobiledev_app.R
 import com.example.mobiledev_app.convertLongToDateString
 import com.example.mobiledev_app.database.Result
 import com.example.mobiledev_app.databinding.ResultItemViewBinding
