@@ -2,6 +2,7 @@ package com.example.mobiledev_app.score
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.mobiledev_app.convertLongToDateString
 import com.example.mobiledev_app.database.Result
 import com.example.mobiledev_app.database.ResultDatabaseDao
 import kotlinx.coroutines.launch
@@ -18,6 +19,14 @@ class ScoreViewModel(
     private val _username = MutableLiveData<String>()
     val user: LiveData<String>
         get() = _username
+
+    private val _date = MutableLiveData<Long>()
+    val date: LiveData<Long>
+        get() = _date
+
+    val dateString = Transformations.map(date) {
+        date -> convertLongToDateString(date)
+    }
 
     private val _onGameRestart = MutableLiveData<Boolean>()
     val onGameRestart: LiveData<Boolean>
@@ -45,6 +54,9 @@ class ScoreViewModel(
             }
             if (result != null) {
                 _username.value = result.userName
+            }
+            if (result != null) {
+                _date.value = result.date
             }
         }
     }

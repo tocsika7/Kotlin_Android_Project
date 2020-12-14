@@ -21,4 +21,7 @@
     <string name="leaderboard_header">Leaderboard</string>
     <string name="clear_leaderboard_button_text">Clear Leaderboard</string>
     <string name="game_player_name_text">Player</string>
+    <string name="lb_name_button_text">Name</string>
+    <string name="lb_score_button_text">Score</string>
+    <string name="lb_date_button_text">Date</string>
 </resources>
