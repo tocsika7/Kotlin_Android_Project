@@ -42,5 +42,21 @@
     <fragment
         android:id="@+id/leaderboardFragment"
         android:name="com.example.mobiledev_app.leaderboard.LeaderboardFragment"
-        android:label="LeaderboardFragment" />
+        android:label="LeaderboardFragment" >
+        <action
+            android:id="@+id/action_leaderboardFragment_to_resultDetailFragment"
+            app:destination="@id/resultDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultDetailFragment"
+        android:name="com.example.mobiledev_app.result_detail.ResultDetailFragment"
+        android:label="fragment_result_detail"
+        tools:layout="@layout/fragment_result_detail" >
+        <action
+            android:id="@+id/action_resultDetailFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
+        <argument
+            android:name="resultId"
+            app:argType="long" />
+    </fragment>
 </navigation>

@@ -20,4 +20,7 @@ interface ResultDatabaseDao {
 
     @Query("SELECT * FROM game_result_table ORDER BY userId DESC LIMIT -1")
     suspend fun getLatestResult(): Result?
+
+    @Query("SELECT * FROM game_result_table WHERE userId = :key")
+    fun getResultById(key: Long): LiveData<Result>
 }
