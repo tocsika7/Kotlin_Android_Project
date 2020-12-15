@@ -45,7 +45,7 @@ class LeaderboardFragment : Fragment() {
 
         viewModel.results.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
         
