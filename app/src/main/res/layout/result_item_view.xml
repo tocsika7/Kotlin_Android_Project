@@ -21,7 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Kanye West"
+            app:userNameString="@{result}"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto"
-            android:text="25"
+            app:scoreString="@{result}"
             android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/user_name"
             app:layout_constraintStart_toEndOf="@+id/user_name" />
@@ -45,7 +45,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
-            android:text="2020. 12. 13. 19:46"
+            app:dateFormatted="@{result}"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name" />

@@ -41,10 +41,8 @@ class ResultAdapter: ListAdapter<Result, ResultAdapter.ViewHolder>(ResultDiffCal
         fun bind(
             item: Result
         ) {
-            val res = itemView.context.resources
-            userName.text = item.userName
-            score.text = item.score.toString()
-            date.text = convertLongToDateString(item.date)
+           binding.result = item
+           binding.executePendingBindings()
         }
 
         companion object {
