@@ -176,6 +176,21 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
             app:layout_constraintStart_toEndOf="@+id/textView2" />
 
+        <TextView
+            android:id="@+id/last_match_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+            android:fontFamily="@font/roboto"
+            android:text="@{gameViewModel.lastMatchResult}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/game_paper_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/computer_choice_value"
+            app:layout_constraintVertical_bias="0.838" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>

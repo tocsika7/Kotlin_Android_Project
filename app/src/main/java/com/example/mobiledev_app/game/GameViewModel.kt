@@ -35,12 +35,17 @@ class GameViewModel(val database: ResultDatabaseDao,
     val lives: LiveData<Int>
         get() = _lives
 
+    private val _lastMatchResult = MutableLiveData<String>()
+    val lastMatchResult: LiveData<String>
+        get() = _lastMatchResult
+
     init {
         _lives.value = 3
         _score.value = 0
         _playerChoice.value = ""
         _computerChoice.value = ""
         _username.value = username
+        _lastMatchResult.value = ""
     }
 
     fun onRockClicked(){
@@ -83,7 +88,7 @@ class GameViewModel(val database: ResultDatabaseDao,
 
     private fun checkWinRock(computerChoice: String) {
         when(computerChoice) {
-            "rock" -> Log.i("GameViewModel", "Draw")
+            "rock" -> onDraw()
             "paper" -> onLoss()
             "scissors" -> onWin()
         }
@@ -92,7 +97,7 @@ class GameViewModel(val database: ResultDatabaseDao,
     private fun checkWinPaper(computerChoice: String) {
         when(computerChoice) {
             "rock" -> onWin()
-            "paper" -> Log.i("GameViewModel", "Draw")
+            "paper" -> onDraw()
             "scissors" -> onLoss()
         }
     }
@@ -101,12 +106,17 @@ class GameViewModel(val database: ResultDatabaseDao,
         when(computerChoice) {
             "rock" -> onLoss()
             "paper" -> onWin()
-            "scissors" -> Log.i("GameViewModel", "Draw")
+            "scissors" -> onDraw()
         }
+    }
+
+    fun onDraw() {
+        _lastMatchResult.value = "Draw!"
     }
 
     fun onWin() {
         _score.value = (_score.value)?.plus(1)
+        _lastMatchResult.value = "You Won!"
     }
 
     fun onGameFinish() {
@@ -123,6 +133,7 @@ class GameViewModel(val database: ResultDatabaseDao,
 
     private fun onLoss(){
         _lives.value = (_lives.value)?.minus(1)
+        _lastMatchResult.value = "You Lost!"
     }
 
 
