@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobileDev_App</string>
+    <string name="app_name">Rock Paper Scissors</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="score_header">You lost</string>
     <string name="title_play_button">Play</string>
