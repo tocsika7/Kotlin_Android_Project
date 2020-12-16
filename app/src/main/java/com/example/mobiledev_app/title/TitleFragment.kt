@@ -36,33 +36,36 @@ class TitleFragment : Fragment() {
         binding.titleViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+
+        /* Observer for the Play Button's LiveData */
         viewModel.eventGameStart.observe(viewLifecycleOwner, Observer { start ->
                 if (start) onPlayStart()
             })
 
+        /* Observer for the LeaderBoard button's LiveData */
         viewModel.navigateToLeaderBoard.observe(viewLifecycleOwner, Observer { nav ->
             if(nav) onLeaderBoard()
         })
 
         return binding.root
 
-
-
     }
 
+    /* Navigate to the LeaderBoard Screen */
     private fun onLeaderBoard() {
+        Log.i("Title", "Navigating to the LeaderBoard Screen")
         NavHostFragment.findNavController(this).navigate(
             TitleFragmentDirections.actionTitleFragmentToLeaderboardFragment()
         )
         viewModel.doneNavigating()
     }
 
+    /* Navigate to the Game Screen */
     private fun onPlayStart() {
-        Log.i("Title", "onPlayStart called")
         val action = TitleFragmentDirections.actionTitleFragmentToGameFragment(
             username = viewModel.userName.value!!
         )
-        Log.i("Title", "username valued passed")
+        Log.i("Title", "Navigating to the Game Screen")
         NavHostFragment.findNavController(this).navigate(action)
     }
 }
