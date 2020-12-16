@@ -45,19 +45,22 @@ class LeaderboardFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         val adapter = ResultAdapter(ResultListener { resultId ->
-            Toast.makeText(context, "${resultId}", Toast.LENGTH_SHORT).show()
             viewModel.onResultClicked(resultId)
         })
 
         viewModel.navigateToResultDetail.observe(viewLifecycleOwner, Observer { result ->
             result?.let {
                 this.findNavController().navigate(LeaderboardFragmentDirections.actionLeaderboardFragmentToResultDetailFragment(result))
+                Log.i("LeaderBoard", "Navigating to a RecyclerView list item's detail screen")
                 viewModel.onResultNavigated()
             }
         })
 
         viewModel.navigateToTitle.observe(viewLifecycleOwner, Observer { nav ->
-            if (nav) navigateToTitle()
+            if (nav) {
+                Log.i("LeaderBoard", "Navigating to the Title Screen")
+                navigateToTitle()
+            }
         })
 
         binding.resultList.adapter = adapter
