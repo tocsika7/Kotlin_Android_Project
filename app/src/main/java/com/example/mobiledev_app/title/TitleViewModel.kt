@@ -13,9 +13,22 @@ class TitleViewModel: ViewModel() {
     val eventGameStart: LiveData<Boolean>
         get() = _eventGameStart
 
+    private val _navigateToLeaderBoard = MutableLiveData<Boolean>()
+    val navigateToLeaderBoard: LiveData<Boolean>
+        get() = _navigateToLeaderBoard
+
+    fun onClickLeaderBoard() {
+        _navigateToLeaderBoard.value = true
+    }
+
+    fun doneNavigating() {
+        _navigateToLeaderBoard.value = false
+    }
+
     init {
         userName.value = "Enter your username"
         _eventGameStart.value = false
+        _navigateToLeaderBoard.value = false
     }
 
     fun onPlayButtonClicked(){

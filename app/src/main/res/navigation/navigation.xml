@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -46,6 +49,9 @@
         <action
             android:id="@+id/action_leaderboardFragment_to_resultDetailFragment"
             app:destination="@id/resultDetailFragment" />
+        <action
+            android:id="@+id/action_leaderboardFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultDetailFragment"

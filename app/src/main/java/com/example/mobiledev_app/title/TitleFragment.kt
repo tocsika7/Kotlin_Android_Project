@@ -40,10 +40,21 @@ class TitleFragment : Fragment() {
                 if (start) onPlayStart()
             })
 
+        viewModel.navigateToLeaderBoard.observe(viewLifecycleOwner, Observer { nav ->
+            if(nav) onLeaderBoard()
+        })
+
         return binding.root
 
 
 
+    }
+
+    private fun onLeaderBoard() {
+        NavHostFragment.findNavController(this).navigate(
+            TitleFragmentDirections.actionTitleFragmentToLeaderboardFragment()
+        )
+        viewModel.doneNavigating()
     }
 
     private fun onPlayStart() {
