@@ -45,19 +45,24 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.gameViewModel = viewModel
+
+        /* If the player loses all the lives the game ends */
         viewModel.lives.observe(viewLifecycleOwner, Observer { lives ->
-            if(lives == 0) gameFinished()
+            if(lives == 0) {
+                gameFinished()
+                Log.i("Game", "Game ended")
+            }
         })
-
-
 
         return binding.root
     }
 
+    /* Function for inserting the userdata into the db and navigating to the Score Screen */
     private fun gameFinished(){
         viewModel.onGameFinish()
         val action = GameFragmentDirections.actionGameToScore()
         NavHostFragment.findNavController(this).navigate(action)
+        Log.i("Game", "Navigating to the Score Screen")
     }
 
 
