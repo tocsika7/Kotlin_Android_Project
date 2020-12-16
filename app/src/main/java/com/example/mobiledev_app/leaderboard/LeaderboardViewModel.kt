@@ -20,6 +20,18 @@ class LeaderboardViewModel(
     val navigateToResultDetail: LiveData<Long>
         get() = _navigateToResultDetail
 
+    private val _navigateToTitle = MutableLiveData<Boolean>()
+    val navigateToTitle: LiveData<Boolean>
+        get() = _navigateToTitle
+
+    fun onPlayAgainClicked() {
+        _navigateToTitle.value = true
+    }
+
+    fun onTitleNavigated() {
+        _navigateToTitle.value = false
+    }
+
     fun onResultClicked(id: Long) {
         _navigateToResultDetail.value = id
     }

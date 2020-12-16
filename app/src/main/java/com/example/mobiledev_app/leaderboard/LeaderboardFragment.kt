@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.database.ResultDatabase
 import com.example.mobiledev_app.databinding.FragmentLeaderboardBinding
+import com.example.mobiledev_app.title.TitleFragmentDirections
 
 
 class LeaderboardFragment : Fragment() {
@@ -54,6 +56,9 @@ class LeaderboardFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToTitle.observe(viewLifecycleOwner, Observer { nav ->
+            if (nav) navigateToTitle()
+        })
 
         binding.resultList.adapter = adapter
 
@@ -64,6 +69,13 @@ class LeaderboardFragment : Fragment() {
         })
         
         return binding.root
+    }
+
+    private fun navigateToTitle(){
+        NavHostFragment.findNavController(this).navigate(
+            LeaderboardFragmentDirections.actionLeaderboardFragmentToTitleFragment()
+        )
+        viewModel.onTitleNavigated()
     }
 
 }
