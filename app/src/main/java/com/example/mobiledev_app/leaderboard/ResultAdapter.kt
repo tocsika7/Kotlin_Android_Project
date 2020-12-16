@@ -11,17 +11,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobiledev_app.R
 import com.example.mobiledev_app.database.Result
 import com.example.mobiledev_app.databinding.ResultItemViewBinding
+import com.example.mobiledev_app.generated.callback.OnClickListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.ClassCastException
 
-private val ITEM_VIEW_TYPE_HEADER = 0
-private val ITEM_VIEW_TYPE_ITEM = 1
-private val adapterScope = CoroutineScope(Dispatchers.Default)
 
-class ResultAdapter: ListAdapter<DataItem, RecyclerView.ViewHolder>(ResultDiffCallback()) {
+
+class ResultAdapter(val clickListener: ResultListener): ListAdapter<DataItem, RecyclerView.ViewHolder>(ResultDiffCallback()) {
+
+
+    private val ITEM_VIEW_TYPE_HEADER = 0
+    private val ITEM_VIEW_TYPE_ITEM = 1
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
     class ResultDiffCallback : DiffUtil.ItemCallback<DataItem>() {
         override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
@@ -39,7 +43,7 @@ class ResultAdapter: ListAdapter<DataItem, RecyclerView.ViewHolder>(ResultDiffCa
         when(holder) {
             is ViewHolder -> {
                 val resultItem = getItem(position) as DataItem.ResultItem
-                holder.bind(resultItem.result)
+                holder.bind(resultItem.result, clickListener)
             }
         }
     }
@@ -88,9 +92,11 @@ class ResultAdapter: ListAdapter<DataItem, RecyclerView.ViewHolder>(ResultDiffCa
         val date: TextView = binding.date
 
         fun bind(
-            item: Result
+            item: Result,
+            clickListener: ResultListener
         ) {
            binding.result = item
+           binding.clickListener = clickListener
            binding.executePendingBindings()
         }
 
@@ -104,6 +110,10 @@ class ResultAdapter: ListAdapter<DataItem, RecyclerView.ViewHolder>(ResultDiffCa
 
     }
 
+}
+
+class ResultListener(val clickListener: (resultId: Long) -> Unit) {
+    fun onClick(result: Result) = clickListener(result.userId)
 }
 
 sealed class DataItem {

@@ -25,4 +25,5 @@
     <string name="lb_score_button_text">Score</string>
     <string name="lb_date_button_text">Date</string>
     <string name="header_text">Best Players</string>
+    <string name="game_result">Game Result</string>
 </resources>

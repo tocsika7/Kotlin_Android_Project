@@ -15,7 +15,19 @@ class LeaderboardViewModel(
 
     val results = database.getAllResults()
 
-  
+
+    private val _navigateToResultDetail = MutableLiveData<Long>()
+    val navigateToResultDetail: LiveData<Long>
+        get() = _navigateToResultDetail
+
+    fun onResultClicked(id: Long) {
+        _navigateToResultDetail.value = id
+    }
+
+    fun onResultNavigated() {
+        _navigateToResultDetail.value = null
+    }
+
 
     val resultsString = Transformations.map(results){ results ->
         formatResults(results, application.resources)
