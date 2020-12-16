@@ -28,6 +28,7 @@ class LeaderboardViewModel(
 
     /* PlayAgain Button clickListener */
     fun onPlayAgainClicked() {
+        Log.i("LeaderBoard", "Play Again Button Clicked")
         _navigateToTitle.value = true
     }
 
@@ -37,7 +38,7 @@ class LeaderboardViewModel(
 
     /* RecyclerView item clickListener */
     fun onResultClicked(id: Long) {
-        Log.i("LeaderBoard", "Play Again Button Clicked")
+        Log.i("LeaderBoard", "List Item Clicked")
         _navigateToResultDetail.value = id
     }
 
