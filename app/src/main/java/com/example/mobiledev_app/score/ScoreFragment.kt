@@ -1,6 +1,7 @@
 package com.example.mobiledev_app.score
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,11 +42,12 @@ class ScoreFragment : Fragment() {
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
+        /* Observer for the Play Again Button's LiveData */
         viewModel.onGameRestart.observe(viewLifecycleOwner, Observer { restart ->
             if(restart) onGameRestart()
         })
 
+        /* Observer for the LeaderBoard Button's LiveData */
         viewModel.onShowLeaderboard.observe(viewLifecycleOwner, Observer { leaderboard ->
             if(leaderboard) onShowLeaderboard()
         })
@@ -53,14 +55,18 @@ class ScoreFragment : Fragment() {
         return binding.root
     }
 
+    /* Function for navigating to the LeaderBoard screen */
     private fun onShowLeaderboard(){
         val action = ScoreFragmentDirections.actionScoreFragmentToLeaderboardFragment()
         NavHostFragment.findNavController(this).navigate(action)
+        Log.i("Score", "Navigating to the LeaderBoard screen")
     }
 
+    /* Function for navigating to the Title screen */
     private fun onGameRestart(){
         val action = ScoreFragmentDirections.actionScoreFragmentToTitleFragment()
         NavHostFragment.findNavController(this).navigate(action)
+        Log.i("Score", "Navigating to the Title screen")
     }
 
 }

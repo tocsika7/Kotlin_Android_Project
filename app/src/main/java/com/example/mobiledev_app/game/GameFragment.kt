@@ -39,6 +39,7 @@ class GameFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = ResultDatabase.getInstance(application).resultDatabaseDao
 
+        /* SafeArgs plugin */
         viewModelFactory = GameViewModelFactory(dataSource,
             application,
             GameFragmentArgs.fromBundle(requireArguments()).username)
