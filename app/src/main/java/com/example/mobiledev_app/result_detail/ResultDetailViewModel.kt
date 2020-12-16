@@ -28,7 +28,6 @@ class ResultDetailViewModel(
     val navigateToLeaderBoard: LiveData<Boolean?>
         get() = _navigateToLeaderBoard
 
-
     fun doneNavigating() {
         _navigateToLeaderBoard.value = null
     }
