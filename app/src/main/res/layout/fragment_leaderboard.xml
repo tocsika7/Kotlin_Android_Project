@@ -36,8 +36,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/result_list"
             android:layout_width="409dp"
-            android:layout_height="565dp"
+            android:layout_height="450dp"
             android:layout_marginTop="45dp"
+            android:layout_marginBottom="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/play_again_leaderboard"
             app:layout_constraintEnd_toEndOf="parent"
